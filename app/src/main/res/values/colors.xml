@@ -6,4 +6,8 @@
 
     <color name="btnSignUp">#39796b</color>
     <color name="btnSignActive">#A9D440</color>
+
+    <color name="overlayBackGround">#7F616466</color>
+    <color name="overlayActionBars">#0e0d0e</color>
+
 </resources>

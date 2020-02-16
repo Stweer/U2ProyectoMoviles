@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.u2proyectomoviles.Modelo.Common;
 import com.example.u2proyectomoviles.Modelo.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +59,13 @@ public class SignIn extends AppCompatActivity {
                             Usuario usuario = dataSnapshot.child(edtDni.getText().toString()).getValue(Usuario.class);
                             if (usuario.getContrasenia().equals(edtContraseña.getText().toString())){
                                 Toast.makeText(SignIn.this, "Sing in Exito !", Toast.LENGTH_SHORT).show();
+
+
+                                Intent intent = new Intent(SignIn.this,Home.class);
+                                Common.currentUser = usuario;
+                                startActivity(intent);
+                                finish();
+
                             }
                             else {
                                 Toast.makeText(SignIn.this, "Contarseña Incorrecta", Toast.LENGTH_SHORT).show();
