@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "576939376447",
+    "firebase_url": "https://u2proyectomovilesrec.firebaseio.com",
+    "project_id": "u2proyectomovilesrec",
+    "storage_bucket": "u2proyectomovilesrec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576939376447:android:038f0d440971ba1ebc1d8a",
+        "android_client_info": {
+          "package_name": "com.example.u2proyectomoviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576939376447-s7ccn6dtpf521ceolobc38hac2qtle83.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.u2proyectomoviles",
+            "certificate_hash": "a5637d2da486807af7819c805cc19530ccd19e05"
+          }
+        },
+        {
+          "client_id": "576939376447-n31grrfhs35kiih0gm5v66jaupqbo6ks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbbhOzrCbMOnX-mjd7mV8KTI9xhypfpi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576939376447-n31grrfhs35kiih0gm5v66jaupqbo6ks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
