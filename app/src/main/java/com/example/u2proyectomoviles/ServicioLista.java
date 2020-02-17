@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -69,8 +70,11 @@ public class ServicioLista extends AppCompatActivity {
                 servicioViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(ServicioLista.this, "" + local.getNombre(),Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(ServicioLista.this, "" + local.getNombre(),Toast.LENGTH_SHORT).show();
+                        //Start new Activity
+                        Intent intent = new Intent(ServicioLista.this,ServicioDetalle.class);
+                        intent.putExtra("ServicioId",adapter.getRef(position).getKey());//send servicce id to new activity
+                        startActivity(intent);
                     }
                 });
             }
