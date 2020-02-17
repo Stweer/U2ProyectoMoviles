@@ -1,11 +1,12 @@
 package com.example.u2proyectomoviles;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.u2proyectomoviles.Interface.ItemClickListener;
 import com.example.u2proyectomoviles.Modelo.Categoria;
 import com.example.u2proyectomoviles.Modelo.Common;
-import com.example.u2proyectomoviles.ServicioViewHolder.ServicioViewHolder;
+import com.example.u2proyectomoviles.ServicioViewHolder.CategoriaViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,7 +35,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -45,6 +45,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     TextView txtNombreCompleto;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+
+
+    FirebaseRecyclerAdapter<Categoria, CategoriaViewHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         setSupportActionBar(toolbar);
 
 
-        //Init Firebase
+        //Inicializacion de Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         categoria = firebaseDatabase.getReference("Categoria");
 
@@ -84,7 +87,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        // Set Name for user
+        // Estableciendo nombre para la usuario
 
         View view = navigationView.getHeaderView(0);
         txtNombreCompleto = (TextView)view.findViewById(R.id.txtNombreCompleto);
@@ -99,17 +102,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void LoadServicio() {
-        FirebaseRecyclerAdapter<Categoria, ServicioViewHolder> adapter = new FirebaseRecyclerAdapter<Categoria, ServicioViewHolder>(Categoria.class,R.layout.servicio_item,ServicioViewHolder.class,categoria) {
+         adapter = new FirebaseRecyclerAdapter<Categoria, CategoriaViewHolder>(Categoria.class,R.layout.categoria_item, CategoriaViewHolder.class,categoria) {
             @Override
-            protected void populateViewHolder(ServicioViewHolder servicioViewHolder, Categoria categoria, int i) {
-                servicioViewHolder.txtServicioNombre.setText(categoria.getNombre());
-                Picasso.with(getBaseContext()).load(categoria.getImagen()).into(servicioViewHolder.imageView);
+            protected void populateViewHolder(CategoriaViewHolder categoriaViewHolder, Categoria categoria, int i) {
+                categoriaViewHolder.txtServicioNombre.setText(categoria.getNombre());
+                Picasso.with(getBaseContext()).load(categoria.getImagen()).into(categoriaViewHolder.imageView);
 
                 final Categoria clickItem = categoria;
-                servicioViewHolder.setItemClickListener(new ItemClickListener() {
+                categoriaViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this, "" + clickItem.getNombre(),Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Home.this, "" + clickItem.getNombre(),Toast.LENGTH_SHORT).show();
+                        // Obtenemos CategoriaId y enviaremos una nueva actividad
+                        Intent serviciolista = new Intent(Home.this,ServicioLista.class);
+                        //porque categoriaId es la clave, así que solo obtenemos la clave de este artículo
+                        serviciolista.putExtra("CategoriaId",adapter.getRef(position).getKey());
+                        startActivity(serviciolista);
                     }
                 });
             }

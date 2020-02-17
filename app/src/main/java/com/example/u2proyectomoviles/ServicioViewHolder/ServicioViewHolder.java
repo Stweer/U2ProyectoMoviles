@@ -13,24 +13,31 @@ import com.example.u2proyectomoviles.R;
 public class ServicioViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-    public TextView txtServicioNombre;
-    public ImageView imageView;
+    public TextView txtservicio_nombre_persona;
+    public TextView txtservicio_pais_persona;
+    public TextView txtservicio_monto_persona;
+    public ImageView imageView_persona;
+
     private ItemClickListener itemClickListener;
-
-    public ServicioViewHolder(@NonNull View itemView) {
-        super(itemView);
-
-        txtServicioNombre = (TextView)itemView.findViewById(R.id.servicio_nombre);
-        imageView = (ImageView)itemView.findViewById(R.id.servicio_image);
-        itemView.setOnClickListener(this);
-    }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
+    public ServicioViewHolder(@NonNull View itemView) {
+        super(itemView);
+        txtservicio_nombre_persona = (TextView)itemView.findViewById(R.id.person_name);
+        txtservicio_pais_persona = (TextView)itemView.findViewById(R.id.pais);
+        txtservicio_monto_persona = (TextView)itemView.findViewById(R.id.costo);
+        imageView_persona = (ImageView) itemView.findViewById(R.id.person_photo);
+
+        itemView.setOnClickListener(this);
+    }
+
     @Override
     public void onClick(View v) {
-        itemClickListener.onClick( v ,getAdapterPosition(),false);
+
+        itemClickListener.onClick(itemView,getAdapterPosition(),false);
+
     }
 }
