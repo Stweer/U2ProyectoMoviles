@@ -39,8 +39,7 @@ public class ServicioDetalle extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         servicios = database.getReference("Servicio");
         //Init View
-//        numberButton = (ElegantNumberButton)findViewById(R.id.number_button);
-//        btnadd = (FloatingActionButton)findViewById(R.id.btnadd);
+       // btnadd = (FloatingActionButton)findViewById(R.id.btnadd);
 
         servicio_descripcion = (TextView)findViewById(R.id.servicio_descripcion);
         servicio_nombre = (TextView)findViewById(R.id.servicio_nombre);
@@ -48,7 +47,7 @@ public class ServicioDetalle extends AppCompatActivity {
         servicio_pais = (TextView)findViewById(R.id.servicio_pais);
         servicio_persona_nombre = (TextView)findViewById(R.id.servicio_persona_nombre);
 
-//        servicio_imagen = (ImageView)findViewById(R.id.img_service);
+        servicio_imagen = (ImageView)findViewById(R.id.img_service);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.callpsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
@@ -70,7 +69,7 @@ public class ServicioDetalle extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Servicio servicio = dataSnapshot.getValue(Servicio.class);
                 //Set Image
-                //Picasso.with(getBaseContext()).load(servicio.getImagen()).into(servicio_imagen);
+                Picasso.with(getBaseContext()).load(servicio.getImagen()).into(servicio_imagen);
 
                 collapsingToolbarLayout.setTitle(servicio.getNombre());
                 servicio_price.setText(servicio.getPrecio());
