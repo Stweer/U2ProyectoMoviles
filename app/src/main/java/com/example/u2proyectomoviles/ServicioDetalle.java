@@ -123,6 +123,8 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
     }
 
     public void llamadon(View view) {
+
+        //Se tiene que activar por el momento manualmente el servicio
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:952618029"));
         if(ActivityCompat.checkSelfPermission(ServicioDetalle.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
             return;
