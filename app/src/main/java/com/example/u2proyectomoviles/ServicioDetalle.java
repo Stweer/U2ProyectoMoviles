@@ -9,6 +9,12 @@ import android.widget.TextView;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.u2proyectomoviles.Modelo.Servicio;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -18,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class ServicioDetalle extends AppCompatActivity {
+public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCallback {
 
     TextView servicio_nombre,servicio_pais,servicio_price,servicio_descripcion,servicio_persona_nombre;
     ImageView servicio_imagen;
@@ -33,7 +39,10 @@ public class ServicioDetalle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_servicio_detalle);
+         setContentView(R.layout.activity_servicio_detalle);
+
+
+
 
         //Firebase
         database = FirebaseDatabase.getInstance();
@@ -61,6 +70,19 @@ public class ServicioDetalle extends AppCompatActivity {
             getServicioDetalle(servicioId);
         }
 
+        // Obtenemos el mapa de forma asíncrona (notificará cuando esté listo)
+        SupportMapFragment mapFragment = (SupportMapFragment)
+                getSupportFragmentManager().findFragmentById(R.id.mapa);
+        mapFragment.getMapAsync(this);
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        GoogleMap mapa = googleMap;
+        LatLng Tacna = new LatLng(-18.011737, -70.253529); //Nos ubicamos en el centro de TAcna
+        mapa.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
+        mapa.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
     }
 
     private void getServicioDetalle(String servicioId) {
