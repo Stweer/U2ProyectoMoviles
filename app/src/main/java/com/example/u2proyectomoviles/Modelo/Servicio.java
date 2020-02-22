@@ -8,20 +8,34 @@ public class Servicio {
     private String Pais;
     private String Precio;
     private String Discount;
+    private String CoordenadaX;
+    private String CoordenadaY;
     private String CategoriaId;
 
-    public Servicio() {
-    }
-
-    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, String categoriaId) {
+    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, String coordenadaX, String coordenadaY, String categoriaId) {
         Nombre = nombre;
         Imagen = imagen;
         Descripcion = descripcion;
         Pais = pais;
         Precio = precio;
         Discount = discount;
+        CoordenadaX = coordenadaX;
+        CoordenadaY = coordenadaY;
         CategoriaId = categoriaId;
     }
+
+    public Servicio() {
+    }
+
+//    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, String categoriaId) {
+//        Nombre = nombre;
+//        Imagen = imagen;
+//        Descripcion = descripcion;
+//        Pais = pais;
+//        Precio = precio;
+//        Discount = discount;
+//        CategoriaId = categoriaId;
+//    }
 
     public String getNombre() {
         return Nombre;
@@ -77,5 +91,24 @@ public class Servicio {
 
     public void setCategoriaId(String categoriaId) {
         CategoriaId = categoriaId;
+    }
+
+
+
+
+    public String getCoordenadaX() {
+        return CoordenadaX;
+    }
+
+    public void setCoordenadaX(String coordenadaX) {
+        CoordenadaX = coordenadaX;
+    }
+
+    public String getCoordenadaY() {
+        return CoordenadaY;
+    }
+
+    public void setCoordenadaY(String coordenadaY) {
+        CoordenadaY = coordenadaY;
     }
 }

@@ -2,8 +2,14 @@ package com.example.u2proyectomoviles;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +41,11 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
 
     FirebaseDatabase database;
     DatabaseReference servicios;
+
+    String corx;
+    String cory;
+    Double cx;
+    Double cy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +90,7 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         GoogleMap mapa = googleMap;
         LatLng Tacna = new LatLng(-18.011737, -70.253529); //Nos ubicamos en el centro de TAcna
         mapa.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
@@ -98,6 +110,9 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
                 servicio_descripcion.setText(servicio.getDescripcion());
                 servicio_pais.setText(servicio.getPais());
 
+
+
+
             }
 
             @Override
@@ -105,5 +120,12 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
 
             }
         });
+    }
+
+    public void llamadon(View view) {
+        Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:952618029"));
+        if(ActivityCompat.checkSelfPermission(ServicioDetalle.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+            return;
+        startActivity(i);
     }
 }
