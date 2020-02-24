@@ -13,14 +13,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.u2proyectomoviles.Modelo.Servicio;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -32,7 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCallback {
+public class ServicioDetalle extends AppCompatActivity {
 
     TextView servicio_nombre,servicio_pais,servicio_price,servicio_descripcion,servicio_persona_nombre;
     ImageView servicio_imagen;
@@ -62,6 +66,14 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
     public TextView txtservicio_coordenadax;
     public TextView txtservicio_coordenaday;
 
+    GoogleMap gmap;
+    MapView mapView;
+    public static Double CORX;
+     public static Double CORY;
+    //Double CORY;
+
+    //
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +97,8 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
 
 
         //
-        //coordenadax =(TextView)findViewById(R.id.txt_coordenadax);
-        //coordenaday =(TextView)findViewById(R.id.txt_coordenaday);
+        coordenadax =(TextView)findViewById(R.id.txt_coordenadax);
+        coordenaday =(TextView)findViewById(R.id.txt_coordenaday);
         telefono =(TextView)findViewById(R.id.txt_telefono);
         estado =(TextView)findViewById(R.id.txt_estado);
         //
@@ -114,24 +126,34 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
 
         // Obtenemos el mapa de forma asíncrona (notificará cuando esté listo)
 
-        SupportMapFragment mapFragment = (SupportMapFragment)
-                getSupportFragmentManager().findFragmentById(R.id.mapa);
-        mapFragment.getMapAsync(this);
+        //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa);
+        //mapFragment.getMapAsync(this);
 
+
+        mapView = (MapView)findViewById(R.id.mapa);
+//        Bundle extras = getIntent().getExtras();
+//        CORX = extras.getDouble("CoordenadaX");
+//        CORY = extras.getDouble("CoordenadaY");
+//
+//        Toast.makeText(ServicioDetalle.this, "" + "cox :" +CORX + "cory :" + CORY,Toast.LENGTH_LONG).show();
     }
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-
-        double a = -18.011737;
-        double b = -70.253529;
-        GoogleMap mapa = googleMap;
-
-        LatLng Tacna = new LatLng(a, b); //Nos ubicamos en el centro de TAcna
-        mapa.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
-        mapa.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
-
-    }
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//
+//
+//        double a = -18.011737;
+//        double b = -70.253529;
+//        //CORX = -18.011737;
+//        //CORY = -70.253529;
+//
+//
+//        GoogleMap mapa = googleMap;
+//
+//        LatLng Tacna = new LatLng(CORX, CORY); //Nos ubicamos en el centro de TAcna
+//        mapa.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
+//        mapa.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
+//
+//    }
 
 
     private void getServicioDetalle(String servicioId) {
@@ -152,9 +174,46 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
                 telefono.setText(servicio.getTelefono());
                 estado.setText(servicio.getEstado());
 
-
                 t = servicio.getTelefono();
 
+                //Tacna = new LatLng(Double.valueOf(servicio.getCoordenadaX()),Double.valueOf(servicio.getCoordenadaY()));
+
+
+                //final LatLng punto = new LatLng (servicio.getCoordenadaX(),servicio.getCoordenadaY());
+                //MAP.addMarker(new MarkerOptions().position(punto).title("GAAAAAA"));
+                //mapa.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
+                //mapa.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
+
+
+
+                coordenadax.setText(Double.toString(servicio.getCoordenadaX()));
+                coordenaday.setText(Double.toString(servicio.getCoordenadaY()));
+
+                cx = Double.valueOf(servicio.getCoordenadaX());
+                cy = Double.valueOf(servicio.getCoordenadaY());
+
+                mapView.onCreate(null);
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        if (gmap == null){
+                            gmap = googleMap;
+                            double a = -18.011737;
+                            double b = -70.253529;
+                            //CORX = -18.011737;
+                            //CORY = -70.253529;
+
+
+                            //GoogleMap mapa = googleMap;
+
+                            LatLng Tacna = new LatLng(cx, cy); //Nos ubicamos en el centro de TAcna
+                            gmap.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
+                            gmap.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
+                            CameraPosition camPos = new CameraPosition.Builder().target(Tacna).zoom(15f).build();
+
+                        }
+                    }
+                });
 
 
                 btnllamar.setOnClickListener(new View.OnClickListener() {

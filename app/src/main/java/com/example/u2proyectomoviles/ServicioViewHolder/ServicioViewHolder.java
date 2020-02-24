@@ -21,8 +21,6 @@ public class ServicioViewHolder extends RecyclerView.ViewHolder implements View.
 
 
 
-
-
     private ItemClickListener itemClickListener;
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -35,9 +33,6 @@ public class ServicioViewHolder extends RecyclerView.ViewHolder implements View.
         txtservicio_pais_persona = (TextView)itemView.findViewById(R.id.pais);
         txtservicio_monto_persona = (TextView)itemView.findViewById(R.id.costo);
         imageView_persona = (ImageView) itemView.findViewById(R.id.person_photo);
-
-
-
 
         itemView.setOnClickListener(this);
     }

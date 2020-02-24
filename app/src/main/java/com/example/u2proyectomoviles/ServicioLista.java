@@ -60,7 +60,7 @@ public class ServicioLista extends AppCompatActivity {
                 //Me gusta: selecciona * de Servicios donde CategoriaId sea ==
                 servicioslista.orderByChild("CategoriaId").equalTo(categoriaId)) {
             @Override
-            protected void populateViewHolder(ServicioViewHolder servicioViewHolder, Servicio servicio, int i) {
+            protected void populateViewHolder(ServicioViewHolder servicioViewHolder, final Servicio servicio, int i) {
                 servicioViewHolder.txtservicio_nombre_persona.setText(servicio.getNombre());
                 servicioViewHolder.txtservicio_monto_persona.setText(" $/" + servicio.getPrecio());
                 servicioViewHolder.txtservicio_pais_persona.setText(servicio.getPais());
