@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,10 +44,24 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
     FirebaseDatabase database;
     DatabaseReference servicios;
 
-    String corx;
-    String cory;
-    Double cx;
-    Double cy;
+    TextView coordenadax,coordenaday,telefono,estado;
+
+    public static Double cx;
+    public static Double cy;
+    private String e;
+    private String t;
+
+    //double cx;
+    //double cy;
+    public LatLng Tacna;
+    private DatabaseReference mDatabase;
+    Button btnllamar;
+
+
+    public TextView txtservicio_estado;
+    public TextView txtservicio_coordenadax;
+    public TextView txtservicio_coordenaday;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +83,27 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
         servicio_pais = (TextView)findViewById(R.id.servicio_pais);
         servicio_persona_nombre = (TextView)findViewById(R.id.servicio_persona_nombre);
 
+
+        //
+        //coordenadax =(TextView)findViewById(R.id.txt_coordenadax);
+        //coordenaday =(TextView)findViewById(R.id.txt_coordenaday);
+        telefono =(TextView)findViewById(R.id.txt_telefono);
+        estado =(TextView)findViewById(R.id.txt_estado);
+        //
+
+
+        btnllamar = (Button)findViewById(R.id.Llamar);
+
         servicio_imagen = (ImageView)findViewById(R.id.img_service);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.callpsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
 
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CallapsedAppbar);
+
+
+
+
 
         //Get Servicio Id from Intent
         if (getIntent() != null)
@@ -82,26 +113,34 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
         }
 
         // Obtenemos el mapa de forma asíncrona (notificará cuando esté listo)
+
         SupportMapFragment mapFragment = (SupportMapFragment)
                 getSupportFragmentManager().findFragmentById(R.id.mapa);
         mapFragment.getMapAsync(this);
 
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+
+        double a = -18.011737;
+        double b = -70.253529;
         GoogleMap mapa = googleMap;
-        LatLng Tacna = new LatLng(-18.011737, -70.253529); //Nos ubicamos en el centro de TAcna
+
+        LatLng Tacna = new LatLng(a, b); //Nos ubicamos en el centro de TAcna
         mapa.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
         mapa.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
+
     }
 
+
     private void getServicioDetalle(String servicioId) {
+
+
         servicios.child(servicioId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Servicio servicio = dataSnapshot.getValue(Servicio.class);
+                final Servicio servicio = dataSnapshot.getValue(Servicio.class);
                 //Set Image
                 Picasso.with(getBaseContext()).load(servicio.getImagen()).into(servicio_imagen);
 
@@ -110,10 +149,31 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
                 servicio_descripcion.setText(servicio.getDescripcion());
                 servicio_pais.setText(servicio.getPais());
 
+                telefono.setText(servicio.getTelefono());
+                estado.setText(servicio.getEstado());
+
+
+                t = servicio.getTelefono();
 
 
 
+                btnllamar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String numero = "925618029";
+                        //String numero = servicio.getTelefono();
+
+                        //Se tiene que activar por el momento manualmente el servicio
+                        Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + t));
+                        if(ActivityCompat.checkSelfPermission(ServicioDetalle.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+                            return;
+                        startActivity(i);
+
+                    }
+                });
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -124,10 +184,6 @@ public class ServicioDetalle extends AppCompatActivity implements OnMapReadyCall
 
     public void llamadon(View view) {
 
-        //Se tiene que activar por el momento manualmente el servicio
-        Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:952618029"));
-        if(ActivityCompat.checkSelfPermission(ServicioDetalle.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
-            return;
-        startActivity(i);
+
     }
 }

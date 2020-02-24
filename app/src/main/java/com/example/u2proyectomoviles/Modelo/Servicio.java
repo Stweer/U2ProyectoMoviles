@@ -8,11 +8,17 @@ public class Servicio {
     private String Pais;
     private String Precio;
     private String Discount;
-    private String CoordenadaX;
-    private String CoordenadaY;
+    private Double CoordenadaX;
+    private Double CoordenadaY;
+    private String Telefono;
+    private String Estado;
     private String CategoriaId;
 
-    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, String coordenadaX, String coordenadaY, String categoriaId) {
+
+    public Servicio() {
+    }
+
+    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, Double coordenadaX, Double coordenadaY, String telefono, String estado, String categoriaId) {
         Nombre = nombre;
         Imagen = imagen;
         Descripcion = descripcion;
@@ -21,13 +27,12 @@ public class Servicio {
         Discount = discount;
         CoordenadaX = coordenadaX;
         CoordenadaY = coordenadaY;
+        Telefono = telefono;
+        Estado = estado;
         CategoriaId = categoriaId;
     }
 
-    public Servicio() {
-    }
-
-//    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, String categoriaId) {
+    //    public Servicio(String nombre, String imagen, String descripcion, String pais, String precio, String discount, String categoriaId) {
 //        Nombre = nombre;
 //        Imagen = imagen;
 //        Descripcion = descripcion;
@@ -96,19 +101,36 @@ public class Servicio {
 
 
 
-    public String getCoordenadaX() {
+    public Double getCoordenadaX() {
         return CoordenadaX;
     }
 
-    public void setCoordenadaX(String coordenadaX) {
+    public void setCoordenadaX(Double coordenadaX) {
         CoordenadaX = coordenadaX;
     }
 
-    public String getCoordenadaY() {
+    public Double getCoordenadaY() {
         return CoordenadaY;
     }
 
-    public void setCoordenadaY(String coordenadaY) {
+    public void setCoordenadaY(Double coordenadaY) {
         CoordenadaY = coordenadaY;
+    }
+
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        Telefono = telefono;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String estado) {
+        Estado = estado;
     }
 }
