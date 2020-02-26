@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.u2proyectomoviles.Modelo.Common;
@@ -24,6 +26,7 @@ public class SignIn extends AppCompatActivity {
 
     EditText edtDni,edtContraseña;
     Button btnSignIn;
+    TextView txt_s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class SignIn extends AppCompatActivity {
         edtContraseña = (MaterialEditText)findViewById(R.id.edtContraseña);
         edtDni = (MaterialEditText)findViewById(R.id.edtDni);
         btnSignIn = (Button)findViewById(R.id.btnSignIn);
+
+        txt_s = (TextView)findViewById(R.id.txt_s);
+        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/nabilla.ttf");
+        txt_s.setTypeface(face);
 
         //Inicializacion de Firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

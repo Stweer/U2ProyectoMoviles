@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.u2proyectomoviles.Modelo.Usuario;
@@ -21,6 +23,8 @@ public class SignUp extends AppCompatActivity {
 
     MaterialEditText edtDni,edtNombre,edtContrasenia;
     Button btnSignUp;
+    TextView txt_u;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,10 @@ public class SignUp extends AppCompatActivity {
         edtDni = (MaterialEditText)findViewById(R.id.edtDni);
 
         btnSignUp = (Button)findViewById(R.id.btnSignUp);
+
+        txt_u = (TextView)findViewById(R.id.txt_u);
+        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/nabilla.ttf");
+        txt_u.setTypeface(face);
 
         //Inicializacion de Firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

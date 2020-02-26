@@ -209,6 +209,7 @@ public class ServicioDetalle extends AppCompatActivity {
                             LatLng Tacna = new LatLng(cx, cy); //Nos ubicamos en el centro de TAcna
                             gmap.addMarker(new MarkerOptions().position(Tacna).title("Marcador Tacna"));
                             gmap.moveCamera(CameraUpdateFactory.newLatLng(Tacna));
+                            gmap.setMaxZoomPreference(15);
                             CameraPosition camPos = new CameraPosition.Builder().target(Tacna).zoom(15f).build();
 
                         }
