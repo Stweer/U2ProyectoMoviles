@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import info.hoang8f.widget.FButton;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSignIn,btnSignUp,btnSign_In;
+    Button btnSignIn,btnSignUp;
+    //FButton btnSignIn,btnSignUp;
     TextView txtSlogan;
 
     @Override
@@ -21,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn = (Button)findViewById(R.id.btnSignIn);
         btnSignUp = (Button)findViewById(R.id.btnSignUp);
         txtSlogan = (TextView)findViewById(R.id.txtSlogan);
-        //Typeface face = Typeface.createFromAsset(getAssets(),"fonts/NABILLA.TTF");
-        //txtSlogan.setTypeface(face);
+        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/nabilla.ttf");
+        txtSlogan.setTypeface(face);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

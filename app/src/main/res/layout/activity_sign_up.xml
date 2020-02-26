@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@drawable/ic_fondo4"
     tools:context=".SignUp">
 
     <LinearLayout
@@ -26,10 +26,11 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textSize="34sp"
-            app:met_baseColor="@android:color/white"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabelTextSize="20dp"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="8"
-            app:met_primaryColor="@android:color/white"
+            app:met_primaryColor="@android:color/black"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -42,10 +43,11 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textSize="34sp"
-            app:met_baseColor="@android:color/white"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabelTextSize="20dp"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="8"
-            app:met_primaryColor="@android:color/white"
+            app:met_primaryColor="@android:color/black"
             app:met_singleLineEllipsis="true" />
 
 
@@ -59,10 +61,11 @@
             android:textColor="@android:color/black"
             android:textSize="34sp"
             android:inputType="textPassword"
-            app:met_baseColor="@android:color/white"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabelTextSize="20dp"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="8"
-            app:met_primaryColor="@android:color/white"
+            app:met_primaryColor="@android:color/black"
             app:met_singleLineEllipsis="true"
             />
 
@@ -78,7 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@color/btnSignUp"
+        android:background="@drawable/custom_button"
+
         />
 
 </RelativeLayout>

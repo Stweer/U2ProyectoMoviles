@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_fondo4"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,16 +16,19 @@
         >
 
         <ImageView
-            android:src="@drawable/abc_vector_test"
+
             android:layout_width="200dp"
-            android:layout_height="200dp">
+            android:layout_height="203dp"
+            android:src="@drawable/ic_logo">
+
         </ImageView>
         <TextView
             android:gravity="center"
             android:id="@+id/txtSlogan"
             android:text="@string/slogan"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:layout_width="200dp"
+            android:textSize="15dp"
             android:layout_height="wrap_content">
         </TextView>
 
@@ -40,26 +44,31 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btnSignUp"
-            android:layout_width="0dp"
+            android:id="@+id/btnSignIn"
+            android:text="Sign In"
+            android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:text="SignUp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@color/btnSignUp"
-            android:textColor="@android:color/white"
+            android:background="@drawable/custom_button"
             />
 
+
         <Button
-            android:id="@+id/btnSignIn"
-            android:layout_width="0dp"
+            android:id="@+id/btnSignUp"
+            android:text="Sign Up"
+            android:textColor="@android:color/white"
             android:layout_weight="1"
-            android:text="Sign In"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:textColor="@android:color/white"
-            android:background="@color/btnSignUp"
+            android:background="@drawable/custom_button"
+
             />
+
+
+
 
     </LinearLayout>
 </RelativeLayout>

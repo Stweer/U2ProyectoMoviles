@@ -93,12 +93,12 @@ public class ServicioDetalle extends AppCompatActivity {
         servicio_nombre = (TextView)findViewById(R.id.servicio_nombre);
         servicio_price = (TextView)findViewById(R.id.servicio_price);
         servicio_pais = (TextView)findViewById(R.id.servicio_pais);
-        servicio_persona_nombre = (TextView)findViewById(R.id.servicio_persona_nombre);
+        //servicio_persona_nombre = (TextView)findViewById(R.id.servicio_persona_nombre);
 
 
         //
-        coordenadax =(TextView)findViewById(R.id.txt_coordenadax);
-        coordenaday =(TextView)findViewById(R.id.txt_coordenaday);
+        //coordenadax =(TextView)findViewById(R.id.txt_coordenadax);
+        //coordenaday =(TextView)findViewById(R.id.txt_coordenaday);
         telefono =(TextView)findViewById(R.id.txt_telefono);
         estado =(TextView)findViewById(R.id.txt_estado);
         //
@@ -186,8 +186,8 @@ public class ServicioDetalle extends AppCompatActivity {
 
 
 
-                coordenadax.setText(Double.toString(servicio.getCoordenadaX()));
-                coordenaday.setText(Double.toString(servicio.getCoordenadaY()));
+                ///coordenadax.setText(Double.toString(servicio.getCoordenadaX()));
+                ///coordenaday.setText(Double.toString(servicio.getCoordenadaY()));
 
                 cx = Double.valueOf(servicio.getCoordenadaX());
                 cy = Double.valueOf(servicio.getCoordenadaY());
